@@ -19,8 +19,8 @@
 
 namespace OCA\ServiceProviders\AppInfo;
 
+use ChristophWurst\Nextcloud\ServiceProviders\ServiceProviders;
 use OCA\ServiceProviders\Provider\CalculatorServiceProvider;
-use OCA\ServiceProviders\Provider\ServiceProviders;
 use OCP\AppFramework\App;
 
 class Application extends App {

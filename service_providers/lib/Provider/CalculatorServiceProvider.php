@@ -22,6 +22,7 @@
 
 namespace OCA\ServiceProviders\Provider;
 
+use ChristophWurst\Nextcloud\ServiceProviders\ServiceProvider;
 use OCA\ServiceProviders\Contracts\ICalculator;
 use OCA\ServiceProviders\Service\CalculatorService;
 use OCP\AppFramework\IAppContainer;

@@ -1,12 +1,14 @@
 {
-    "name": "christophwurst/nextcloud_service_providers",
-    "type": "library",
-    "license": "AGPLv3",
-    "authors": [
-        {
-            "name": "Christoph Wurst",
-            "email": "christoph@winzerhof-wurst.at"
-        }
-    ],
-    "require": {}
+	"name": "christophwurst/nextcloudserviceproviders_app",
+	"type": "library",
+	"license": "AGPL-3.0",
+	"authors": [
+		{
+			"name": "Christoph Wurst",
+			"email": "christoph@winzerhof-wurst.at"
+		}
+	],
+	"require": {
+		"christophwurst/nextcloudserviceprovider": "^0.1.0"
+	}
 }
