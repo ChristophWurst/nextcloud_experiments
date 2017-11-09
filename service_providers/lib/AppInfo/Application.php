@@ -35,6 +35,7 @@ class Application extends App {
 		parent::__construct('service_providers', $urlParams);
 
 		$this->registerServiceProviders();
+		$this->bootServiceProviders();
 	}
 
 }
