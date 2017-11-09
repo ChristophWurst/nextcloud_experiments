@@ -21,6 +21,9 @@ namespace OCA\ServiceProviders\AppInfo;
 
 use ChristophWurst\Nextcloud\ServiceProviders\ServiceProviders;
 use OCA\ServiceProviders\Provider\CalculatorServiceProvider;
+use OCA\ServiceProviders\Provider\EventServiceProvider;
+use OCA\ServiceProviders\Provider\MiddlewareServiceProvider;
+use OCA\ServiceProviders\Provider\RouteServiceProvider;
 use OCP\AppFramework\App;
 
 class Application extends App {
@@ -29,6 +32,9 @@ class Application extends App {
 
 	protected $providers = [
 		CalculatorServiceProvider::class,
+		EventServiceProvider::class,
+		RouteServiceProvider::class,
+		MiddlewareServiceProvider::class,
 	];
 
 	public function __construct(array $urlParams = []) {

@@ -25,31 +25,15 @@ namespace OCA\ServiceProviders\Provider;
 use ChristophWurst\Nextcloud\ServiceProviders\ServiceProvider;
 use OCP\AppFramework\App;
 use OCP\AppFramework\IAppContainer;
-use OCP\Route\IRouter;
 
-class RouteServiceProvider extends ServiceProvider {
+class EventServiceProvider extends ServiceProvider {
 
-	private function getRoutes() {
-		return [
-			[
-				'name' => 'page#index',
-				'url' => '/',
-				'verb' => 'GET'
-			],
-		];
-	}
+	public function boot(App $app, IAppContainer $container) {
+		$userSession = $container->getServer()->getUserSession();
 
-	private function getResources() {
-		return [];
-	}
-
-	public function register(App $app, IAppContainer $container) {
-		$router = $container->query(IRouter::class);
-
-		$app->registerRoutes($router, [
-			'routes' => $this->getRoutes(),
-			'resources' => $this->getResources(),
-		]);
+		$userSession->listen('\OC\User', 'postLogin', function ($user) {
+			// Do something when a user logs in
+		});
 	}
 
 }

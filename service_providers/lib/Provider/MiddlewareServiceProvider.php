@@ -23,33 +23,18 @@
 namespace OCA\ServiceProviders\Provider;
 
 use ChristophWurst\Nextcloud\ServiceProviders\ServiceProvider;
+use OCA\ServiceProviders\Http\Middleware\AuthorizationMiddleware;
+use OCA\ServiceProviders\Http\Middleware\ExceptionReportingMiddleware;
+use OCA\ServiceProviders\Http\Middleware\ValidationMiddleware;
 use OCP\AppFramework\App;
 use OCP\AppFramework\IAppContainer;
-use OCP\Route\IRouter;
 
-class RouteServiceProvider extends ServiceProvider {
-
-	private function getRoutes() {
-		return [
-			[
-				'name' => 'page#index',
-				'url' => '/',
-				'verb' => 'GET'
-			],
-		];
-	}
-
-	private function getResources() {
-		return [];
-	}
+class MiddlewareServiceProvider extends ServiceProvider {
 
 	public function register(App $app, IAppContainer $container) {
-		$router = $container->query(IRouter::class);
-
-		$app->registerRoutes($router, [
-			'routes' => $this->getRoutes(),
-			'resources' => $this->getResources(),
-		]);
+		$container->registerMiddleWare(ExceptionReportingMiddleware::class);
+		$container->registerMiddleWare(AuthorizationMiddleware::class);
+		$container->registerMiddleWare(ValidationMiddleware::class);
 	}
 
 }

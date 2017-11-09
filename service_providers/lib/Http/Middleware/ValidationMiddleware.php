@@ -20,36 +20,17 @@
  *
  */
 
-namespace OCA\ServiceProviders\Provider;
+namespace OCA\ServiceProviders\Http\Middleware;
 
-use ChristophWurst\Nextcloud\ServiceProviders\ServiceProvider;
-use OCP\AppFramework\App;
-use OCP\AppFramework\IAppContainer;
-use OCP\Route\IRouter;
+use OCP\AppFramework\Middleware;
 
-class RouteServiceProvider extends ServiceProvider {
+/**
+ * Middlware that validates incoming request
+ */
+class ValidationMiddleware extends Middleware {
 
-	private function getRoutes() {
-		return [
-			[
-				'name' => 'page#index',
-				'url' => '/',
-				'verb' => 'GET'
-			],
-		];
-	}
-
-	private function getResources() {
-		return [];
-	}
-
-	public function register(App $app, IAppContainer $container) {
-		$router = $container->query(IRouter::class);
-
-		$app->registerRoutes($router, [
-			'routes' => $this->getRoutes(),
-			'resources' => $this->getResources(),
-		]);
+	public function beforeController($controller, $methodName) {
+		// Do something useful
 	}
 
 }

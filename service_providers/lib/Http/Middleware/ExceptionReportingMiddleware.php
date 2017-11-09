@@ -20,36 +20,18 @@
  *
  */
 
-namespace OCA\ServiceProviders\Provider;
+namespace OCA\ServiceProviders\Http\Middleware;
 
-use ChristophWurst\Nextcloud\ServiceProviders\ServiceProvider;
-use OCP\AppFramework\App;
-use OCP\AppFramework\IAppContainer;
-use OCP\Route\IRouter;
+use Exception;
+use OCP\AppFramework\Middleware;
 
-class RouteServiceProvider extends ServiceProvider {
+/**
+ * Middlware that handles application errors
+ */
+class ExceptionReportingMiddleware extends Middleware {
 
-	private function getRoutes() {
-		return [
-			[
-				'name' => 'page#index',
-				'url' => '/',
-				'verb' => 'GET'
-			],
-		];
-	}
-
-	private function getResources() {
-		return [];
-	}
-
-	public function register(App $app, IAppContainer $container) {
-		$router = $container->query(IRouter::class);
-
-		$app->registerRoutes($router, [
-			'routes' => $this->getRoutes(),
-			'resources' => $this->getResources(),
-		]);
+	public function afterException($controller, $methodName, Exception $exception) {
+		// Do something useful
 	}
 
 }
