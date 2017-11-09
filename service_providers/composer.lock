@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "bd08ce5b065734ffa71f76d362513b0b",
+    "content-hash": "5f4399205ede1987674c9e17da529f6e",
     "packages": [
         {
             "name": "christophwurst/nextcloud",
@@ -36,16 +36,16 @@
         },
         {
             "name": "christophwurst/nextcloudserviceprovider",
-            "version": "v0.1.1",
+            "version": "v0.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ChristophWurst/nextcloud_serviceproviders.git",
-                "reference": "743b2270d80302587fd31c731050bde8da443675"
+                "reference": "7aa3157f35fd45e542c806d5bd57eeb5a58957d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ChristophWurst/nextcloud_serviceproviders/zipball/743b2270d80302587fd31c731050bde8da443675",
-                "reference": "743b2270d80302587fd31c731050bde8da443675",
+                "url": "https://api.github.com/repos/ChristophWurst/nextcloud_serviceproviders/zipball/7aa3157f35fd45e542c806d5bd57eeb5a58957d6",
+                "reference": "7aa3157f35fd45e542c806d5bd57eeb5a58957d6",
                 "shasum": ""
             },
             "require": {
@@ -68,7 +68,7 @@
                 }
             ],
             "description": "Service provider infrastructure for Nextcloud apps",
-            "time": "2017-11-09T17:50:23+00:00"
+            "time": "2017-11-09T18:07:13+00:00"
         }
     ],
     "packages-dev": [],

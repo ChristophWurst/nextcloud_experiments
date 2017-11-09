@@ -9,6 +9,6 @@
 		}
 	],
 	"require": {
-		"christophwurst/nextcloudserviceprovider": "^0.1.1"
+		"christophwurst/nextcloudserviceprovider": "^0.1.2"
 	}
 }
