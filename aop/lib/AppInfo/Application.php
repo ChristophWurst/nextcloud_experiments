@@ -36,7 +36,7 @@ class Application extends App {
 
 		$container->registerService(IUserService::class, function(IAppContainer $container) {
 			$service = $container->query(UserService::class);
-			$interceptor = new MethodInterceptor($service);
+			$interceptor = new MethodInterceptor($service, UserService::class);
 			$transactionAspect = $container->query(TransactionAspect::class);
 			$interceptor->setAspect($transactionAspect);
 

@@ -22,7 +22,6 @@
 
 namespace OCA\AOP\Support;
 
-use Closure;
 use ProxyManager\Factory\RemoteObject\AdapterInterface;
 
 class MethodInterceptor implements AdapterInterface {
@@ -30,15 +29,15 @@ class MethodInterceptor implements AdapterInterface {
 	/** @var mixed */
 	private $wrapped;
 
+	/** @var string */
+	private $class;
+
 	/** @var Aspect */
 	private $aspect;
 
-	/**
-	 * @param mixed $wrapped
-	 * @param Closure $closure
-	 */
-	public function __construct($wrapped) {
+	public function __construct($wrapped, $class) {
 		$this->wrapped = $wrapped;
+		$this->class = $class;
 	}
 
 	/**
@@ -52,7 +51,7 @@ class MethodInterceptor implements AdapterInterface {
 			return call_user_func_array([$this->wrapped, $method], $params);
 		};
 
-		return $this->aspect->around($proceed, $params);
+		return $this->aspect->around($this->wrapped, $this->class, $method, $params, $proceed);
 	}
 
 	/**

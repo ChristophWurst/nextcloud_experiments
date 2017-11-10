@@ -23,8 +23,10 @@
 namespace OCA\AOP\Support;
 
 use Closure;
+use OCP\AppFramework\Utility\IControllerMethodReflector;
 use OCP\IDBConnection;
 use OCP\ILogger;
+use Symfony\Component\Config\Definition\Exception\Exception;
 
 class TransactionAspect extends Aspect {
 
@@ -34,25 +36,50 @@ class TransactionAspect extends Aspect {
 	/** @var IDBConnection */
 	private $dbConnection;
 
-	public function __construct(ILogger $logger, IDBConnection $dbConnection) {
+	/** @var IControllerMethodReflector */
+	private $reflector;
+
+	public function __construct(ILogger $logger, IDBConnection $dbConnection, IControllerMethodReflector $reflector) {
 		$this->logger = $logger;
 		$this->dbConnection = $dbConnection;
+		$this->reflector = $reflector;
 	}
 
-	public function around(Closure $proceed, array $params) {
+	private function isTransactional($class, $method) {
+		$this->reflector->reflect($class, $method);
+		return $this->reflector->hasAnnotation('Transactional');
+	}
+
+	public function around($object, $class, $method, array $params, Closure $proceed) {
 		$this->logger->info('before method call');
 
+		$isTransacted = $this->isTransactional($class, $method);
+
+		if ($isTransacted) {
+			$ret = $this->runInTransaction($object, $class, $method, $params, $proceed);
+		} else {
+			$ret = $this->runWithoutTransaction($object, $class, $method, $params, $proceed);
+		}
+
+		$this->logger->info('after method call');
+		return $ret;
+	}
+
+	private function runInTransaction($object, $class, $method, $params, $proceed) {
 		$this->dbConnection->beginTransaction();
 		try {
-			$ret = parent::around($proceed, $params);
+			$ret = parent::around($object, $class, $method, $params, $proceed);
 		} catch (Exception $e) {
 			$this->dbConnection->rollBack();
 			throw $e;
 		}
 		$this->dbConnection->commit();
 
-		$this->logger->info('after method call');
 		return $ret;
+	}
+
+	private function runWithoutTransaction($object, $class, $method, $params, $proceed) {
+		return parent::around($object, $class, $method, $params, $proceed);
 	}
 
 }

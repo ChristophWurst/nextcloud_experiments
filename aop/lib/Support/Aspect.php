@@ -26,7 +26,7 @@ use Closure;
 
 abstract class Aspect {
 
-	public function around(Closure $proceed, array $params) {
+	public function around($object, $class, $method, array $params, Closure $proceed) {
 		return $proceed($params);
 	}
 

@@ -38,11 +38,16 @@ class UserService implements IUserService {
 		$this->config = $config;
 	}
 
+	/**
+	 * @Transactional
+	 * @return type
+	 * @throws Exception
+	 */
 	public function updateLastLogin() {
 		$lastLogin = $this->config->getUserValue('admin', 'login', 'lastLogin', 1);
 
 		if ($lastLogin > 1) {
-			$this->config->setUserValue('admin', 'login', 'lastLogin', 0);
+			$this->config->setUserValue('admin', 'login', 'lastLogin', 1000);
 			throw new Exception('maybe that is a bad idea. let\'s roll back');
 		}
 
