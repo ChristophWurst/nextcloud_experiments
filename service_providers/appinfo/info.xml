@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
-	<id>mail</id>
+	<id>service_providers</id>
 	<name>service_providers</name>
 	<summary>Service Providers Experiment</summary>
 	<description>Service Providers Experiment</description>
