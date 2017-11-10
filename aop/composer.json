@@ -1,0 +1,14 @@
+{
+	"name": "christophwurst/nextcloud_aop_app",
+	"type": "library",
+	"license": "AGPL-3.0",
+	"authors": [
+		{
+			"name": "Christoph Wurst",
+			"email": "christoph@winzerhof-wurst.at"
+		}
+	],
+	"require": {
+		"ocramius/proxy-manager": "^2.1"
+	}
+}

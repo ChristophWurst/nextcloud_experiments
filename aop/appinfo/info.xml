@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+	<id>aop</id>
+	<name>AOP</name>
+	<summary>AOP Experiment</summary>
+	<description>AOP Experiment</description>
+	<version>0.1.0</version>
+	<licence>agpl</licence>
+	<author>Christoph Wurst</author>
+	<namespace>AOP</namespace>
+	<dependencies>
+		<php min-version="7.1" max-version="7.1" />
+		<nextcloud min-version="13" max-version="13" />
+	</dependencies>
+	<commands>
+		<command>OCA\AOP\Command\UpdateLastLoginCommand</command>
+	</commands>
+</info>
